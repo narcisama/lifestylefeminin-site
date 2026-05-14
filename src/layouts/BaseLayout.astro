@@ -1,6 +1,8 @@
 ---
 import SEO from '../components/SEO.astro';
 import BackgroundOrbs from '../components/BackgroundOrbs.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -14,14 +16,16 @@ const { title, description, canonical, type } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="ro-RO">
   <head>
     <SEO title={title} description={description} canonical={canonical} type={type} />
   </head>
   <body>
     <BackgroundOrbs />
-    <main class="container">
+    <Header />
+    <main id="main-content" class="container">
       <slot />
     </main>
+    <Footer />
   </body>
 </html>

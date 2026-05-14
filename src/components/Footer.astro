@@ -1,30 +1,183 @@
 ---
 import { SITE_CONFIG } from '../config/site';
-const year = new Date().getFullYear();
+
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { href: '/', label: 'Acasă' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/despre/', label: 'Despre' },
+];
+
+const legalLinks = [
+  { href: '/politica-de-confidentialitate/', label: 'Politica de confidențialitate' },
+  { href: '/termeni-si-conditii/', label: 'Termeni și condiții' },
+  { href: '/politica-cookies/', label: 'Politica cookies' },
+  { href: '/contact/', label: 'Contact' },
+];
 ---
 
-<footer class="site-footer">
-  <p>&copy; {year} {SITE_CONFIG.name}. Toate drepturile rezervate.</p>
-  <p class="partner">
-    Profil oficial:
-    <a href={SITE_CONFIG.partners.sonia11.url} target="_blank" rel="noopener">
-      {SITE_CONFIG.partners.sonia11.url}
-    </a>
-  </p>
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h2 class="footer-title gradient-text">Lifestyle Feminin</h2>
+      <p class="footer-tagline">{SITE_CONFIG.shortDescription}</p>
+      <p class="footer-author">
+        Conținut original de <strong>Sonia</strong> — creator de lifestyle din România.
+      </p>
+    </div>
+
+    <nav class="footer-section" aria-label="Navigare site">
+      <h3 class="footer-heading">Navigare</h3>
+      <ul class="footer-links" role="list">
+        {navLinks.map((link) => (
+          <li><a href={link.href} class="footer-link">{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="footer-section" aria-label="Pagini legale">
+      <h3 class="footer-heading">Legal</h3>
+      <ul class="footer-links" role="list">
+        {legalLinks.map((link) => (
+          <li><a href={link.href} class="footer-link">{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer-section">
+      <h3 class="footer-heading">Sonia Online</h3>
+      <ul class="footer-links" role="list">
+        <li>
+          <a
+            href={SITE_CONFIG.partners.sonia11.url}
+            class="footer-link"
+            target="_blank"
+            rel="noopener"
+          >
+            Profil oficial Sonia
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="copyright">
+      &copy; {currentYear} {SITE_CONFIG.name}. Toate drepturile rezervate.
+    </p>
+    <p class="gdpr-note">
+      Site conform GDPR (Regulament UE 2016/679).
+    </p>
+  </div>
 </footer>
 
 <style>
   .site-footer {
-    margin-top: 32px;
-    padding: 18px 0;
-    text-align: center;
-    font-size: 0.75rem;
-    color: rgba(240, 230, 255, 0.55);
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 60px;
+    padding: 40px 0 20px;
+    background: rgba(26, 10, 46, 0.6);
+    border-top: 1px solid rgba(255, 0, 128, 0.15);
   }
-  .partner a {
+
+  .footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  @media (min-width: 600px) {
+    .footer-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .footer-container {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+    color: rgba(240, 230, 255, 0.75);
+    line-height: 1.5;
+    margin: 0 0 8px;
+  }
+
+  .footer-author {
+    font-size: 0.8rem;
+    color: rgba(240, 230, 255, 0.6);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .footer-author strong {
     color: #ff6eb4;
+    font-weight: 700;
+  }
+
+  .footer-heading {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-link {
+    color: rgba(240, 230, 255, 0.75);
     text-decoration: none;
-    border-bottom: 1px dashed #ff6eb4;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    transition: color 0.2s ease;
+  }
+  .footer-link:hover {
+    color: #ff6eb4;
+  }
+
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 30px auto 0;
+    padding: 20px 16px 0;
+    border-top: 1px solid rgba(255, 0, 128, 0.1);
+    text-align: center;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+    color: rgba(240, 230, 255, 0.6);
+    margin: 0 0 6px;
+  }
+
+  .gdpr-note {
+    font-size: 0.75rem;
+    color: rgba(240, 230, 255, 0.45);
+    margin: 0;
   }
 </style>
