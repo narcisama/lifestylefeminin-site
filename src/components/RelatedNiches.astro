@@ -1,0 +1,58 @@
+---
+import { SITE_CONFIG } from '../config/site';
+
+interface Props {
+  currentSlug: string;
+  count?: number | undefined;
+}
+
+const { currentSlug, count = 3 } = Astro.props;
+
+const otherNiches = SITE_CONFIG.niches.filter(n => n.slug !== currentSlug);
+const shuffled = [...otherNiches].sort(() => Math.random() - 0.5);
+const related = shuffled.slice(0, count);
+---
+
+<section class="related-niches glass-card">
+  <h2 class="related-title">Alte categorii</h2>
+  <div class="related-grid">
+    {related.map((niche) => (
+      <a href={`/blog/${niche.slug}/`} class="related-card">
+        <span class="related-label">{niche.shortLabel}</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .related-niches {
+    margin: 20px 0;
+  }
+  .related-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .related-card {
+    background: rgba(255, 0, 128, 0.08);
+    border: 1px solid rgba(255, 0, 128, 0.2);
+    border-radius: 10px;
+    padding: 14px 8px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #f0e6ff;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+  .related-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 0, 128, 0.18);
+  }
+</style>

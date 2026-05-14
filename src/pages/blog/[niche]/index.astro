@@ -1,0 +1,183 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import NicheHero from '../../../components/NicheHero.astro';
+import NicheGallery from '../../../components/NicheGallery.astro';
+import RelatedNiches from '../../../components/RelatedNiches.astro';
+import AuthorBio from '../../../components/AuthorBio.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import { SITE_CONFIG } from '../../../config/site';
+import { NICHE_DATA, getNicheData } from '../../../lib/niches';
+
+export async function getStaticPaths() {
+  return Object.keys(NICHE_DATA).map((niche) => ({
+    params: { niche },
+  }));
+}
+
+const { niche } = Astro.params;
+const nicheData = getNicheData(niche as string);
+
+if (!nicheData) {
+  return Astro.redirect('/404');
+}
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const nichePosts = allPosts
+  .filter((post) => post.data.niche === niche)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+const pageTitle = `${nicheData.title} — Articole, Inspirație, Sfaturi | ${SITE_CONFIG.name}`;
+const pageDescription = nicheData.tagline;
+
+const collectionPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${SITE_CONFIG.url}/blog/${niche}/`,
+  url: `${SITE_CONFIG.url}/blog/${niche}/`,
+  name: nicheData.title,
+  description: nicheData.tagline,
+  inLanguage: 'ro-RO',
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${SITE_CONFIG.url}/#website`,
+    name: SITE_CONFIG.name,
+    url: SITE_CONFIG.url,
+  },
+  about: nicheData.keywords.map((kw) => ({
+    '@type': 'Thing',
+    name: kw,
+  })),
+  image: `${SITE_CONFIG.url}${nicheData.heroImage.src}`,
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Acasă',
+      item: SITE_CONFIG.url,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Blog',
+      item: `${SITE_CONFIG.url}/blog/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: nicheData.title,
+      item: `${SITE_CONFIG.url}/blog/${niche}/`,
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={`${SITE_CONFIG.url}/blog/${niche}/`}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionPageSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <NicheHero
+    title={nicheData.title}
+    tagline={nicheData.tagline}
+    imagePath={nicheData.heroImage.src}
+    imageAlt={nicheData.heroImage.alt}
+  />
+
+  <section class="niche-intro glass-card">
+    <h2 class="intro-title">Despre {nicheData.title}</h2>
+    <div class="intro-content">
+      {nicheData.intro.split('\n\n').map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+  </section>
+
+  <section class="niche-articles glass-card">
+    <h2 class="articles-title">Articole din {nicheData.title}</h2>
+    {nichePosts.length === 0 ? (
+      <div class="empty-state">
+        <p>Articolele despre {nicheData.title.toLowerCase()} vor apărea aici în curând.</p>
+        <p class="empty-cta">
+          Între timp, vizitează <a href={SITE_CONFIG.partners.sonia11.url} target="_blank" rel="noopener">{SITE_CONFIG.partners.sonia11.url}</a> pentru conținut original.
+        </p>
+      </div>
+    ) : (
+      <div class="articles-list">
+        {nichePosts.map((post) => <BlogCard post={post} />)}
+      </div>
+    )}
+  </section>
+
+  <NicheGallery photos={nicheData.photos} />
+
+  <AuthorBio />
+
+  <RelatedNiches currentSlug={niche as string} count={3} />
+</BaseLayout>
+
+<style>
+  .niche-intro {
+    margin: 20px 0;
+  }
+  .intro-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .intro-content p {
+    font-size: 0.9rem;
+    color: rgba(240, 230, 255, 0.85);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .intro-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .niche-articles {
+    margin: 20px 0;
+  }
+  .articles-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .empty-state {
+    text-align: center;
+    padding: 20px 10px;
+  }
+  .empty-state p {
+    font-size: 0.9rem;
+    color: rgba(240, 230, 255, 0.75);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .empty-cta {
+    font-size: 0.85rem !important;
+    color: rgba(240, 230, 255, 0.6) !important;
+  }
+  .empty-cta a {
+    color: #ff6eb4;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(255, 110, 180, 0.4);
+  }
+  .empty-cta a:hover {
+    border-bottom-color: #ff6eb4;
+  }
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+</style>

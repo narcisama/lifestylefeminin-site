@@ -1,0 +1,82 @@
+---
+interface PhotoItem {
+  src: string;
+  alt: string;
+  caption?: string | undefined;
+}
+
+interface Props {
+  photos: PhotoItem[];
+}
+
+const { photos } = Astro.props;
+---
+
+{photos.length > 0 && (
+  <section class="niche-gallery glass-card">
+    <h2 class="gallery-title">Galerie</h2>
+    <div class="gallery-grid">
+      {photos.map((photo) => (
+        <figure class="gallery-item">
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            loading="lazy"
+            decoding="async"
+            width="600"
+            height="450"
+          />
+          {photo.caption && <figcaption>{photo.caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .niche-gallery {
+    margin: 20px 0;
+  }
+  .gallery-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-align: center;
+    color: #fff;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .gallery-item {
+    margin: 0;
+    background: #1a0a2e;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    position: relative;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+  .gallery-item figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: #fff;
+    padding: 20px 12px 12px;
+    font-size: 0.8rem;
+  }
+</style>
