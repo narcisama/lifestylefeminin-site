@@ -1,0 +1,47 @@
+---
+import { SITE_CONFIG } from '../config/site';
+---
+
+<div class="author-bio glass-card">
+  <h3 class="author-bio-title">Despre autoare</h3>
+  <p class="author-bio-text">{SITE_CONFIG.author.bio}</p>
+  <a
+    href={SITE_CONFIG.partners.sonia11.url}
+    target="_blank"
+    rel="noopener"
+    class="author-bio-link"
+  >
+    {SITE_CONFIG.partners.sonia11.label} &rarr;
+  </a>
+</div>
+
+<style>
+  .author-bio {
+    margin-top: 30px;
+    text-align: center;
+    background: rgba(130, 0, 255, 0.08);
+    border-color: rgba(130, 0, 255, 0.2);
+  }
+  .author-bio-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .author-bio-text {
+    font-size: 0.85rem;
+    color: rgba(240, 230, 255, 0.8);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .author-bio-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ff0080, #8200ff);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+</style>

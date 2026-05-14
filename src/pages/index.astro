@@ -22,66 +22,24 @@ import { SITE_CONFIG } from '../config/site';
     <h2 class="section-title">Categorii</h2>
     <div class="niches-grid">
       {SITE_CONFIG.niches.map((niche) => (
-        <div class="niche-card">
+        <a href={`/blog/${niche.slug}/`} class="niche-card">
           <span>{niche.label}</span>
-        </div>
+        </a>
       ))}
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .hero {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 10px;
-  }
-
-  .hero-subtitle {
-    font-size: 0.9rem;
-    color: rgba(240, 230, 255, 0.7);
-  }
-
-  .author-section {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .author-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 15px 0 8px;
-  }
-
-  .author-bio {
-    font-size: 0.85rem;
-    color: rgba(240, 230, 255, 0.75);
-    line-height: 1.5;
-  }
-
-  .niches {
-    margin-top: 20px;
-  }
-
-  .section-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-
-  .niches-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
+  .hero { text-align: center; margin-bottom: 30px; }
+  .hero-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .hero-subtitle { font-size: 0.9rem; color: rgba(240, 230, 255, 0.7); }
+  .author-section { text-align: center; margin-bottom: 20px; }
+  .author-title { font-size: 1.5rem; font-weight: 700; margin: 15px 0 8px; }
+  .author-bio { font-size: 0.85rem; color: rgba(240, 230, 255, 0.75); line-height: 1.5; }
+  .niches { margin-top: 20px; }
+  .section-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; text-align: center; }
+  .niches-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .niche-card {
     background: rgba(255, 0, 128, 0.08);
     border: 1px solid rgba(255, 0, 128, 0.2);
@@ -90,9 +48,11 @@ import { SITE_CONFIG } from '../config/site';
     text-align: center;
     font-size: 0.85rem;
     font-weight: 600;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, background 0.3s ease;
+    color: #f0e6ff;
+    text-decoration: none;
+    display: block;
   }
-
   .niche-card:hover {
     transform: translateY(-2px);
     background: rgba(255, 0, 128, 0.15);

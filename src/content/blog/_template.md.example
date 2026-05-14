@@ -1,0 +1,17 @@
+---
+title: "Titlu articol (10-80 caractere)"
+description: "Meta description SEO 50-160 caractere care apare în Google search results"
+publishDate: 2026-05-14
+author: "Sonia"
+niche: "moto"
+image: "/images/blog/moto/main.webp"
+imageAlt: "Descriere imagine pentru screen readers"
+tags: ["motofete", "biker girl", "lifestyle"]
+keywords: ["motofete romania", "biker girl romania"]
+draft: true
+featured: false
+---
+
+## Introducere
+
+Conținutul articolului în Markdown...

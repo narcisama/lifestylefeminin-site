@@ -81,5 +81,7 @@ const websiteSchema = {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
+<link rel="alternate" type="application/rss+xml" title={SITE_CONFIG.name} href={`${SITE_CONFIG.url}/rss.xml`} />
+
 <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />

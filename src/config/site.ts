@@ -1,13 +1,13 @@
-// Toate datele site-ului - portabilitate maxima
+// Toate datele site-ului - portabilitate maximă
 export const SITE_CONFIG = {
   name: 'Lifestyle Feminin',
   domain: 'lifestylefeminin.ro',
   url: 'https://lifestylefeminin.ro',
-  description: 'Blog lifestyle feminin premium din Romania. Articole originale despre frumusete, moda, fitness, motociclism feminin si incredere in sine.',
-  shortDescription: 'Lifestyle premium feminin din Romania',
+  description: 'Blog lifestyle feminin premium din România. Articole originale despre frumusețe, modă, fitness, motociclism feminin și încredere în sine.',
+  shortDescription: 'Lifestyle premium feminin din România',
   author: {
     name: 'Sonia',
-    bio: 'Creator de continut lifestyle din Romania, pasionata de motociclism, beauty, fashion si incredere feminina.',
+    bio: 'Creator de conținut lifestyle din România, pasionată de motociclism, beauty, fashion și încredere feminină.',
     image: '/images/author.jpg',
     twitter: '',
   },
@@ -31,13 +31,13 @@ export const SITE_CONFIG = {
   },
   niches: [
     { slug: 'moto', label: 'Motociclism', shortLabel: 'Moto' },
-    { slug: 'grwm', label: 'GRWM - Pregateste-te cu mine', shortLabel: 'GRWM' },
+    { slug: 'grwm', label: 'GRWM - Pregătește-te cu mine', shortLabel: 'GRWM' },
     { slug: 'hot-girl-summer', label: 'Hot Girl Summer', shortLabel: 'Summer' },
     { slug: 'ootd', label: 'OOTD Fashion', shortLabel: 'Fashion' },
     { slug: 'gym-girl', label: 'Gym Girl Fitness', shortLabel: 'Fitness' },
     { slug: 'lifestyle-premium', label: 'Lifestyle Premium', shortLabel: 'Premium' },
-    { slug: 'soft-girl-baddie', label: 'Soft Girl & Baddie', shortLabel: 'Aesthetic' },
-    { slug: 'glow-up', label: 'Glow Up & Skincare', shortLabel: 'Glow' },
+    { slug: 'soft-girl-baddie', label: 'Soft Girl și Baddie', shortLabel: 'Aesthetic' },
+    { slug: 'glow-up', label: 'Glow Up și Skincare', shortLabel: 'Glow' },
   ],
   locale: 'ro-RO',
   language: 'ro',
