@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import { SITE_CONFIG } from '../config/site';
+---
+
+<BaseLayout
+  title="Politica Cookies — Lifestyle Feminin"
+  description="Cum folosim cookie-urile pe Lifestyle Feminin. Tipuri de cookies, durata și cum să le dezactivezi."
+  canonical={`${SITE_CONFIG.url}/politica-cookies/`}
+>
+  <LegalPage
+    title="Politica Cookies"
+    description="Transparență totală asupra cookie-urilor folosite pe site-ul nostru."
+    lastUpdated={SITE_CONFIG.legal.lastUpdated}
+    breadcrumbName="Politica Cookies"
+  >
+    <h2>1. Ce sunt cookie-urile</h2>
+    <p>
+      Cookie-urile sunt fișiere text mici stocate pe dispozitivul tău (computer, telefon,
+      tabletă) atunci când vizitezi un site web. Acestea permit site-ului să-și amintească
+      acțiunile și preferințele tale (precum acceptarea cookie-urilor sau setările de afișare).
+    </p>
+    <p>
+      Cookie-urile <strong>NU pot</strong>: accesa alte fișiere de pe dispozitivul tău,
+      transmite viruși, identifica direct persoana ta fără date suplimentare.
+    </p>
+
+    <h2>2. Cookie-urile pe care le folosim</h2>
+    <p>
+      Lifestyle Feminin folosește un set minim de cookie-uri, exclusiv pentru funcționalitate
+      de bază și înțelegerea audienței. Categoriile sunt:
+    </p>
+
+    <h3>2.1. Cookie-uri esențiale (necesare)</h3>
+    <p>
+      Aceste cookie-uri sunt strict necesare pentru funcționarea site-ului. Nu pot fi dezactivate.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Nume cookie</th>
+          <th>Scop</th>
+          <th>Durată</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>lf_cookie_consent</td>
+          <td>Salvează preferința ta pentru cookies</td>
+          <td>12 luni</td>
+        </tr>
+        <tr>
+          <td>__cf_bm</td>
+          <td>Cloudflare bot management (securitate)</td>
+          <td>30 minute</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>2.2. Cookie-uri analitice (opționale)</h3>
+    <p>
+      Aceste cookie-uri ne ajută să înțelegem cum interacționezi cu site-ul. Datele sunt
+      anonimizate. <strong>Activate doar dacă accepți explicit prin bannerul de consimțământ.</strong>
+    </p>
+    <p>
+      <em>Notă: la momentul actual, nu folosim active cookie-uri analitice (precum Google
+      Analytics). Această secțiune este pregătită pentru momentul când vom introduce
+      analiza traficului.</em>
+    </p>
+
+    <h3>2.3. Cookie-uri de marketing (opționale)</h3>
+    <p>
+      <em>Nu folosim cookie-uri de marketing sau retargeting pe acest site.</em>
+    </p>
+
+    <h2>3. Cookie-uri terțe</h2>
+    <p>
+      Când dai click pe link-uri externe (precum
+      <a href={SITE_CONFIG.partners.sonia11.url} target="_blank" rel="noopener">sonia11.com</a>),
+      platformele respective pot seta propriile cookie-uri pe dispozitivul tău. Acestea
+      sunt guvernate de politicile lor proprii, nu de noi.
+    </p>
+
+    <h2>4. Cum poți controla cookie-urile</h2>
+    <p>Ai control complet asupra cookie-urilor stocate pe dispozitivul tău:</p>
+    <ul>
+      <li><strong>Bannerul de consimțământ</strong> — la prima vizită, poți accepta sau respinge cookie-urile non-esențiale.</li>
+      <li><strong>Setările browserului</strong> — poți șterge sau bloca cookie-uri din setările browserului tău.</li>
+    </ul>
+    <p>Link-uri rapide către setări cookies pentru browsere populare:</p>
+    <ul>
+      <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+      <li><a href="https://support.mozilla.org/ro/kb/blochez-cookie-urile" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+      <li><a href="https://support.apple.com/ro-ro/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+      <li><a href="https://support.microsoft.com/ro-ro/microsoft-edge" target="_blank" rel="noopener">Microsoft Edge</a></li>
+    </ul>
+
+    <h2>5. Consecințe ale dezactivării cookie-urilor</h2>
+    <p>
+      Dezactivarea cookie-urilor esențiale poate afecta funcționarea anumitor părți ale
+      site-ului. Dezactivarea cookie-urilor opționale (analitice) nu afectează experiența
+      ta de navigare.
+    </p>
+
+    <h2>6. Modificări ale acestei politici</h2>
+    <p>
+      Vom actualiza această politică atunci când introducem cookie-uri noi (de exemplu,
+      când adăugăm analytics). Te încurajăm să verifici această pagină periodic.
+    </p>
+
+    <h2>7. Contact</h2>
+    <p>
+      Pentru întrebări despre cookie-uri, scrie-ne la
+      <a href={`mailto:${SITE_CONFIG.legal.contactEmail}`}>{SITE_CONFIG.legal.contactEmail}</a>.
+    </p>
+  </LegalPage>
+</BaseLayout>

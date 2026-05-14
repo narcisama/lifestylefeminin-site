@@ -41,4 +41,16 @@ export const SITE_CONFIG = {
   ],
   locale: 'ro-RO',
   language: 'ro',
+  legal: {
+    contactEmail: 'contact@lifestylefeminin.ro',
+    operatorName: 'Sonia',
+    operatorType: 'Persoană fizică',
+    country: 'România',
+    lastUpdated: '15 mai 2026',
+    anspdcp: {
+      name: 'ANSPDCP (Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal)',
+      url: 'https://www.dataprotection.ro/',
+      email: 'anspdcp@dataprotection.ro',
+    },
+  },
 } as const;

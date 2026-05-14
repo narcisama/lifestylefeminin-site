@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import { SITE_CONFIG } from '../config/site';
+
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  '@id': `${SITE_CONFIG.url}/contact/#contactpage`,
+  url: `${SITE_CONFIG.url}/contact/`,
+  name: 'Contact - Lifestyle Feminin',
+  description: 'Contactează-mă pentru colaborări, întrebări sau feedback.',
+  inLanguage: 'ro-RO',
+  mainEntity: {
+    '@type': 'Person',
+    '@id': `${SITE_CONFIG.url}/despre/#sonia`,
+    name: SITE_CONFIG.author.name,
+    email: SITE_CONFIG.legal.contactEmail,
+    url: `${SITE_CONFIG.url}/despre/`,
+  },
+};
+---
+
+<BaseLayout
+  title="Contact — Lifestyle Feminin"
+  description="Contactează-mă pentru colaborări, întrebări, feedback sau orice altă solicitare. Răspund în maxim 48 ore."
+  canonical={`${SITE_CONFIG.url}/contact/`}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(contactPageSchema)} />
+
+  <LegalPage
+    title="Contact"
+    description="Scrie-mi pentru colaborări, întrebări sau orice solicitare."
+    lastUpdated={SITE_CONFIG.legal.lastUpdated}
+    breadcrumbName="Contact"
+  >
+    <h2>Cum să mă contactezi</h2>
+    <p>
+      Bună! Sunt <strong>{SITE_CONFIG.author.name}</strong> și sunt deschisă la orice mesaj.
+      Folosesc canalele de mai jos pentru a-ți răspunde personal — toate mesajele primesc atenție.
+    </p>
+
+    <h2>Email principal</h2>
+    <p>
+      Pentru întrebări, colaborări, feedback sau orice solicitare legată de blog:
+    </p>
+    <p class="email-cta">
+      <a href={`mailto:${SITE_CONFIG.legal.contactEmail}`}>
+        {SITE_CONFIG.legal.contactEmail}
+      </a>
+    </p>
+    <p>
+      Răspund de obicei în <strong>24-48 ore</strong> în zilele lucrătoare. Pentru subiecte
+      urgente, menționează "URGENT" în subiectul emailului.
+    </p>
+
+    <h2>Profil oficial Sonia</h2>
+    <p>
+      Pentru conținut exclusiv, interacțiune directă și mai multe canale de comunicare,
+      mă găsești pe profilul meu oficial:
+    </p>
+    <p class="profile-cta">
+      <a href={SITE_CONFIG.partners.sonia11.url} target="_blank" rel="noopener">
+        &rarr; {SITE_CONFIG.partners.sonia11.url}
+      </a>
+    </p>
+
+    <h2>Colaborări și parteneriate</h2>
+    <p>
+      Sunt deschisă la colaborări care se aliniază cu valorile blogului. Pentru propuneri,
+      te rog să incluzi în email:
+    </p>
+    <ul>
+      <li>Numele tău / al brandului</li>
+      <li>Tipul de colaborare propus</li>
+      <li>Termenii și calendarul preliminar</li>
+      <li>Link-uri către portofoliu sau platforme relevante</li>
+    </ul>
+    <p>
+      <strong>Notă:</strong> nu accept colaborări care implică conținut neonest, produse
+      pe care nu le testez personal, sau care contravin valorilor blogului.
+    </p>
+
+    <h2>Solicitări legale și GDPR</h2>
+    <p>
+      Pentru solicitări legate de protecția datelor (acces, rectificare, ștergere,
+      portabilitate), folosește același email și menționează "GDPR" în subiect. Vezi
+      <a href="/politica-de-confidentialitate/">Politica de Confidențialitate</a> pentru
+      detalii complete.
+    </p>
+
+    <h2>Sesizări copyright</h2>
+    <p>
+      Pentru sesizări privind drepturi de autor (DMCA și similare), trimite la
+      <a href={`mailto:${SITE_CONFIG.legal.contactEmail}`}>{SITE_CONFIG.legal.contactEmail}</a>
+      cu următoarele:
+    </p>
+    <ul>
+      <li>Identificarea conținutului presupus a încălca drepturi</li>
+      <li>Dovada deținerii drepturilor</li>
+      <li>Datele tale de contact</li>
+      <li>Declarație că informațiile sunt corecte</li>
+    </ul>
+  </LegalPage>
+</BaseLayout>
+
+<style is:global>
+  .email-cta {
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 20px;
+  }
+  .email-cta a {
+    font-weight: 700;
+  }
+  .profile-cta {
+    text-align: center;
+    padding: 20px;
+  }
+  .profile-cta a {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+</style>

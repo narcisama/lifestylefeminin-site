@@ -1,0 +1,214 @@
+---
+import { SITE_CONFIG } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  lastUpdated: string;
+  breadcrumbName: string;
+}
+
+const { title, description, lastUpdated, breadcrumbName } = Astro.props;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Acasă',
+      item: SITE_CONFIG.url,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: breadcrumbName,
+      item: `${SITE_CONFIG.url}${Astro.url.pathname}`,
+    },
+  ],
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${SITE_CONFIG.url}${Astro.url.pathname}#webpage`,
+  url: `${SITE_CONFIG.url}${Astro.url.pathname}`,
+  name: title,
+  description: description,
+  inLanguage: 'ro-RO',
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${SITE_CONFIG.url}/#website`,
+    name: SITE_CONFIG.name,
+    url: SITE_CONFIG.url,
+  },
+  dateModified: lastUpdated,
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+
+<header class="legal-header">
+  <nav class="breadcrumb" aria-label="Navigare breadcrumb">
+    <a href="/">Acasă</a>
+    <span class="separator">&rsaquo;</span>
+    <span class="current">{breadcrumbName}</span>
+  </nav>
+  <h1 class="legal-title gradient-text">{title}</h1>
+  <p class="legal-subtitle">{description}</p>
+  <p class="legal-updated">Ultima actualizare: <strong>{lastUpdated}</strong></p>
+</header>
+
+<article class="legal-content glass-card">
+  <slot />
+
+  <div class="legal-footer">
+    <a href="/" class="back-home">&larr; Înapoi la pagina principală</a>
+  </div>
+</article>
+
+<style>
+  .legal-header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 20px 0;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    color: rgba(240, 230, 255, 0.6);
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: rgba(255, 110, 180, 0.85);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover {
+    color: #ff6eb4;
+    text-decoration: underline;
+  }
+  .breadcrumb .separator {
+    margin: 0 8px;
+    color: rgba(240, 230, 255, 0.4);
+  }
+  .breadcrumb .current {
+    color: rgba(240, 230, 255, 0.85);
+  }
+
+  .legal-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .legal-subtitle {
+    font-size: 0.9rem;
+    color: rgba(240, 230, 255, 0.8);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .legal-updated {
+    font-size: 0.8rem;
+    color: rgba(240, 230, 255, 0.55);
+  }
+  .legal-updated strong {
+    color: #ff6eb4;
+  }
+
+  .legal-content {
+    padding: 24px;
+  }
+
+  .legal-content :global(h2) {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 28px 0 12px;
+  }
+  .legal-content :global(h2:first-child) {
+    margin-top: 0;
+  }
+  .legal-content :global(h3) {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ff6eb4;
+    margin: 20px 0 10px;
+  }
+  .legal-content :global(p) {
+    font-size: 0.88rem;
+    color: rgba(240, 230, 255, 0.85);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .legal-content :global(strong) {
+    color: #fff;
+    font-weight: 700;
+  }
+  .legal-content :global(ul), .legal-content :global(ol) {
+    padding-left: 24px;
+    margin: 14px 0;
+  }
+  .legal-content :global(li) {
+    font-size: 0.88rem;
+    color: rgba(240, 230, 255, 0.85);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .legal-content :global(a) {
+    color: #ff6eb4;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(255, 110, 180, 0.4);
+  }
+  .legal-content :global(a:hover) {
+    border-bottom-color: #ff6eb4;
+  }
+  .legal-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.82rem;
+    display: block;
+    overflow-x: auto;
+  }
+  .legal-content :global(th) {
+    background: rgba(255, 0, 128, 0.15);
+    padding: 10px;
+    text-align: left;
+    color: #fff;
+    font-weight: 700;
+  }
+  .legal-content :global(td) {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(240, 230, 255, 0.85);
+    vertical-align: top;
+  }
+
+  .legal-footer {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 0, 128, 0.15);
+    text-align: center;
+  }
+
+  .back-home {
+    color: #ff6eb4;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 110, 180, 0.4);
+    border-radius: 24px;
+    display: inline-block;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .back-home:hover {
+    background: rgba(255, 0, 128, 0.1);
+    border-color: #ff6eb4;
+  }
+</style>

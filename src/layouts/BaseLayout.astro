@@ -3,6 +3,7 @@ import SEO from '../components/SEO.astro';
 import BackgroundOrbs from '../components/BackgroundOrbs.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -27,5 +28,6 @@ const { title, description, canonical, type } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <CookieBanner />
   </body>
 </html>

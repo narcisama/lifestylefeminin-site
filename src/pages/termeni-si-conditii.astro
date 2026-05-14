@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import { SITE_CONFIG } from '../config/site';
+---
+
+<BaseLayout
+  title="Termeni și Condiții — Lifestyle Feminin"
+  description="Termenii de utilizare a site-ului Lifestyle Feminin. Reguli pentru accesarea conținutului și interacțiunea cu blogul."
+  canonical={`${SITE_CONFIG.url}/termeni-si-conditii/`}
+>
+  <LegalPage
+    title="Termeni și Condiții"
+    description="Reguli de utilizare a site-ului Lifestyle Feminin."
+    lastUpdated={SITE_CONFIG.legal.lastUpdated}
+    breadcrumbName="Termeni și Condiții"
+  >
+    <h2>1. Acceptarea termenilor</h2>
+    <p>
+      Prin accesarea și navigarea site-ului <strong>{SITE_CONFIG.url}</strong>, accepți
+      integral acești Termeni și Condiții. Dacă nu ești de acord cu vreun aspect, te rugăm
+      să nu mai utilizezi site-ul.
+    </p>
+
+    <h2>2. Descrierea serviciului</h2>
+    <p>
+      Lifestyle Feminin este un blog de conținut lifestyle adresat publicului feminin din
+      România. Conținutul include articole pe teme de beauty, fashion, fitness, motociclism
+      și stil de viață, creat și publicat de <strong>{SITE_CONFIG.author.name}</strong>.
+    </p>
+    <p>
+      Site-ul este oferit "așa cum este" (as-is), fără garanții explicite sau implicite
+      privind acuratețea sau disponibilitatea completă.
+    </p>
+
+    <h2>3. Proprietatea intelectuală</h2>
+    <p>
+      Tot conținutul publicat pe acest site (articole, imagini, design, structură) este
+      proprietatea exclusivă a <strong>{SITE_CONFIG.author.name}</strong> și este protejat
+      de legea drepturilor de autor (Legea 8/1996 modificată).
+    </p>
+    <p>
+      Este interzisă reproducerea, distribuirea sau utilizarea comercială a conținutului
+      fără acord scris prealabil. Pentru orice solicitare de utilizare, contactează-ne la
+      <a href={`mailto:${SITE_CONFIG.legal.contactEmail}`}>{SITE_CONFIG.legal.contactEmail}</a>.
+    </p>
+    <p>
+      Citarea unor fragmente scurte pentru scopuri educaționale, jurnalistice sau de
+      comentariu este permisă conform fair use, cu menționarea sursei și a unui link
+      înapoi către articolul original.
+    </p>
+
+    <h2>4. Conduita utilizatorului</h2>
+    <p>Prin utilizarea acestui site, te angajezi să:</p>
+    <ul>
+      <li>Nu utilizezi site-ul în scopuri ilegale sau frauduloase</li>
+      <li>Nu încerci să accesezi neautorizat sistemele site-ului</li>
+      <li>Nu lansezi atacuri (DDoS, scraping masiv, injecții)</li>
+      <li>Respecți drepturile de proprietate intelectuală</li>
+      <li>Nu copiezi sau redistribui conținutul fără permisiune</li>
+    </ul>
+
+    <h2>5. Link-uri externe și parteneri</h2>
+    <p>
+      Site-ul conține link-uri către platforme externe, inclusiv către
+      <a href={SITE_CONFIG.partners.sonia11.url} target="_blank" rel="noopener">sonia11.com</a>
+      (profil oficial Sonia). Nu suntem responsabili pentru conținutul, politicile sau
+      practicile site-urilor terțe.
+    </p>
+    <p>
+      Accesarea acestor link-uri se face pe propria ta responsabilitate. Verifică termenii
+      și politicile fiecărui site extern înainte de a furniza informații sau a efectua tranzacții.
+    </p>
+
+    <h2>6. Limitarea răspunderii</h2>
+    <p>
+      Conținutul publicat reflectă opinii personale și experiențe ale autorului, fără
+      pretenții de consultanță profesională (medicală, juridică, financiară). Pentru decizii
+      care îți afectează sănătatea sau finanțele, consultă un specialist calificat.
+    </p>
+    <p>Nu suntem răspunzători pentru:</p>
+    <ul>
+      <li>Eventuale erori, omisiuni sau informații expirate din articole</li>
+      <li>Daune directe sau indirecte rezultate din utilizarea informațiilor</li>
+      <li>Indisponibilitatea temporară a site-ului din cauze tehnice</li>
+      <li>Acțiunile site-urilor externe la care facem referire</li>
+    </ul>
+
+    <h2>7. Modificări ale termenilor</h2>
+    <p>
+      Ne rezervăm dreptul de a modifica acești Termeni oricând, cu actualizarea datei în
+      partea de sus. Continuarea utilizării site-ului după modificări înseamnă acceptarea acestora.
+    </p>
+
+    <h2>8. Legea aplicabilă și jurisdicția</h2>
+    <p>
+      Acești Termeni sunt guvernați de legislația română. Orice litigiu va fi soluționat
+      amiabil prin mediere; în caz contrar, va fi de competența instanțelor judecătorești
+      române competente teritorial pentru sediul operatorului.
+    </p>
+
+    <h2>9. Reclamații și contact</h2>
+    <p>
+      Pentru orice nelămurire, reclamație sau solicitare legată de aceste condiții, ne
+      poți contacta la
+      <a href={`mailto:${SITE_CONFIG.legal.contactEmail}`}>{SITE_CONFIG.legal.contactEmail}</a>.
+    </p>
+    <p>
+      Conform OG 21/1992 privind protecția consumatorilor, pentru produse/servicii
+      comerciale te poți adresa <strong>ANPC</strong>
+      (<a href="https://anpc.ro/" target="_blank" rel="noopener">anpc.ro</a>).
+    </p>
+  </LegalPage>
+</BaseLayout>

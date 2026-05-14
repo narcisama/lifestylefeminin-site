@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import { SITE_CONFIG } from '../config/site';
+---
+
+<BaseLayout
+  title="Politica de Confidențialitate — Lifestyle Feminin"
+  description="Cum protejăm datele tale personale. Politică conformă GDPR (Regulament UE 2016/679) și legislația română."
+  canonical={`${SITE_CONFIG.url}/politica-de-confidentialitate/`}
+>
+  <LegalPage
+    title="Politica de Confidențialitate"
+    description="Protejăm datele tale conform GDPR (Regulament UE 2016/679) și legislației române."
+    lastUpdated={SITE_CONFIG.legal.lastUpdated}
+    breadcrumbName="Politica de Confidențialitate"
+  >
+    <h2>1. Identitatea operatorului de date</h2>
+    <p>
+      Site-ul <strong>{SITE_CONFIG.name}</strong> ({SITE_CONFIG.url}) este operat de
+      <strong>{SITE_CONFIG.legal.operatorName}</strong>, în calitate de
+      {SITE_CONFIG.legal.operatorType.toLowerCase()} din {SITE_CONFIG.legal.country}.
+    </p>
+    <p>
+      Pentru orice întrebare legată de prelucrarea datelor tale personale, ne poți contacta la
+      <a href={`mailto:${SITE_CONFIG.legal.contactEmail}`}>{SITE_CONFIG.legal.contactEmail}</a>.
+    </p>
+
+    <h2>2. Ce date colectăm</h2>
+    <p>
+      Acest site funcționează ca un blog de conținut lifestyle. Colectăm un volum minim
+      de date, exclusiv pentru funcționarea site-ului și înțelegerea audienței:
+    </p>
+    <ul>
+      <li><strong>Date tehnice automate:</strong> adresa IP, tipul browserului, sistemul de operare, paginile vizitate, durata vizitei, sursa de trafic.</li>
+      <li><strong>Cookie-uri:</strong> conform <a href="/politica-cookies/">Politicii Cookies</a> separate.</li>
+      <li><strong>Date de contact opționale:</strong> dacă ne contactezi prin email, păstrăm conversația pentru a-ți răspunde.</li>
+    </ul>
+    <p>
+      <strong>Nu colectăm:</strong> nume, adresă, număr de telefon, date bancare, parole
+      sau alte informații sensibile.
+    </p>
+
+    <h2>3. Scopul prelucrării datelor</h2>
+    <ul>
+      <li>Funcționarea tehnică a site-ului (securitate, performanță).</li>
+      <li>Analiza traficului pentru îmbunătățirea conținutului (date agregate, anonimizate).</li>
+      <li>Răspunsul la solicitările tale prin email.</li>
+      <li>Respectarea obligațiilor legale (păstrare jurnale acces conform legii).</li>
+    </ul>
+
+    <h2>4. Temeiul legal al prelucrării (Art. 6 GDPR)</h2>
+    <ul>
+      <li><strong>Consimțământul tău (Art. 6(1)(a))</strong> pentru cookie-uri non-esențiale.</li>
+      <li><strong>Interesul legitim (Art. 6(1)(f))</strong> pentru analiza traficului și securitatea site-ului.</li>
+      <li><strong>Obligația legală (Art. 6(1)(c))</strong> pentru păstrarea jurnalelor minime de acces.</li>
+    </ul>
+
+    <h2>5. Cât timp păstrăm datele</h2>
+    <p>
+      Datele tehnice sunt păstrate maxim 12 luni. Cookie-urile au durate specifice
+      descrise în <a href="/politica-cookies/">Politica Cookies</a>. Conversațiile prin
+      email se păstrează cât e necesar pentru a-ți răspunde, maxim 24 luni.
+    </p>
+
+    <h2>6. Drepturile tale conform GDPR</h2>
+    <p>Ai următoarele drepturi privind datele tale personale:</p>
+    <ul>
+      <li><strong>Dreptul de acces</strong> — să afli ce date avem despre tine</li>
+      <li><strong>Dreptul de rectificare</strong> — să corectezi date incorecte</li>
+      <li><strong>Dreptul de ștergere</strong> ("dreptul de a fi uitat")</li>
+      <li><strong>Dreptul de restricționare</strong> a prelucrării</li>
+      <li><strong>Dreptul de portabilitate</strong> — să primești datele în format structurat</li>
+      <li><strong>Dreptul de opoziție</strong> la prelucrare</li>
+      <li><strong>Dreptul de retragere a consimțământului</strong> oricând</li>
+      <li><strong>Dreptul de a depune plângere</strong> la ANSPDCP</li>
+    </ul>
+    <p>
+      Pentru exercitarea oricărui drept, scrie-ne la
+      <a href={`mailto:${SITE_CONFIG.legal.contactEmail}`}>{SITE_CONFIG.legal.contactEmail}</a>.
+      Vom răspunde în maxim 30 de zile.
+    </p>
+
+    <h2>7. Transferul datelor către terți</h2>
+    <p>
+      Nu vindem și nu transferăm datele tale către terți în scopuri comerciale. În cazul
+      folosirii unor servicii externe (de ex. Google Analytics, în viitor), datele sunt
+      anonimizate și respectă politicile lor de confidențialitate, conform reglementărilor
+      europene.
+    </p>
+
+    <h2>8. Link-uri către site-uri externe</h2>
+    <p>
+      Site-ul nostru conține link-uri către platforme externe (precum
+      <a href={SITE_CONFIG.partners.sonia11.url} target="_blank" rel="noopener">sonia11.com</a>).
+      Nu suntem responsabili pentru politicile de confidențialitate ale acestor site-uri
+      terțe. Te încurajăm să citești politicile lor înainte de a furniza date personale.
+    </p>
+
+    <h2>9. Securitatea datelor</h2>
+    <p>
+      Site-ul folosește conexiune securizată HTTPS (SSL/TLS) furnizată de Cloudflare.
+      Aplicăm măsuri tehnice rezonabile pentru protecția datelor, dar nicio metodă nu
+      este 100% sigură. În cazul unei breșe de securitate care îți poate afecta drepturile,
+      te vom notifica și vom raporta incidentul la ANSPDCP în 72 ore conform Art. 33 GDPR.
+    </p>
+
+    <h2>10. Autoritatea de Supraveghere</h2>
+    <p>
+      Dacă crezi că drepturile tale nu sunt respectate, te poți adresa
+      <strong>{SITE_CONFIG.legal.anspdcp.name}</strong>:
+    </p>
+    <ul>
+      <li>Website: <a href={SITE_CONFIG.legal.anspdcp.url} target="_blank" rel="noopener">{SITE_CONFIG.legal.anspdcp.url}</a></li>
+      <li>Email: <a href={`mailto:${SITE_CONFIG.legal.anspdcp.email}`}>{SITE_CONFIG.legal.anspdcp.email}</a></li>
+      <li>Adresă: B-dul G-ral. Gheorghe Magheru 28-30, Sector 1, București</li>
+    </ul>
+
+    <h2>11. Modificări ale acestei politici</h2>
+    <p>
+      Această politică poate fi actualizată periodic. Modificările intră în vigoare la
+      data publicării pe această pagină. Te încurajăm să recitești periodic acest document.
+      Data ultimei actualizări este afișată în partea de sus.
+    </p>
+  </LegalPage>
+</BaseLayout>
