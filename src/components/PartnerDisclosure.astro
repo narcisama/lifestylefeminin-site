@@ -1,0 +1,28 @@
+---
+import { SITE_CONFIG } from '../config/site';
+---
+
+<aside class="partner-disclosure glass-card">
+  <p>
+    Acest site face parte dintr-o retea de profile oficiale ale autoarei.
+    Linkurile catre
+    <a href={SITE_CONFIG.partners.sonia11.url} target="_blank" rel="noopener">
+      {SITE_CONFIG.partners.sonia11.url}
+    </a>
+    sunt declarate transparent (Schema.org sameAs).
+  </p>
+</aside>
+
+<style>
+  .partner-disclosure {
+    margin-top: 18px;
+    font-size: 0.8rem;
+    color: rgba(240, 230, 255, 0.75);
+    text-align: center;
+  }
+  .partner-disclosure a {
+    color: #ff6eb4;
+    text-decoration: none;
+    border-bottom: 1px dashed #ff6eb4;
+  }
+</style>

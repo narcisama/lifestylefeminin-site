@@ -1,0 +1,85 @@
+---
+import { SITE_CONFIG } from '../config/site';
+
+interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+  canonical?: string | undefined;
+  image?: string | undefined;
+  type?: 'website' | 'article' | undefined;
+  publishedDate?: string | undefined;
+  modifiedDate?: string | undefined;
+}
+
+const {
+  title = SITE_CONFIG.name,
+  description = SITE_CONFIG.description,
+  canonical = Astro.url.href,
+  image = `${SITE_CONFIG.url}/og-image.jpg`,
+  type = 'website'
+} = Astro.props;
+
+const fullTitle = title === SITE_CONFIG.name
+  ? title
+  : `${title} | ${SITE_CONFIG.name}`;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${SITE_CONFIG.url}/#person`,
+  name: SITE_CONFIG.author.name,
+  url: SITE_CONFIG.url,
+  image: `${SITE_CONFIG.url}${SITE_CONFIG.author.image}`,
+  description: SITE_CONFIG.author.bio,
+  sameAs: [
+    SITE_CONFIG.partners.sonia11.url,
+    SITE_CONFIG.social.instagram,
+    SITE_CONFIG.social.tiktok,
+  ],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_CONFIG.url}/#website`,
+  name: SITE_CONFIG.name,
+  url: SITE_CONFIG.url,
+  description: SITE_CONFIG.description,
+  inLanguage: SITE_CONFIG.locale,
+  author: { '@id': `${SITE_CONFIG.url}/#person` },
+};
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="generator" content={Astro.generator} />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta property="og:locale" content="ro_RO" />
+<meta property="og:site_name" content={SITE_CONFIG.name} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+
+<meta name="theme-color" content={SITE_CONFIG.theme.primaryColor} />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="googlebot" content="index, follow" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />

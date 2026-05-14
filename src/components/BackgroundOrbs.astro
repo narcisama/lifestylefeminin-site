@@ -1,0 +1,64 @@
+---
+// Orb-uri animate identice cu sonia11.com
+---
+
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<style>
+  .bg-orbs {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    will-change: transform;
+    animation: orbDrift 20s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 0, 128, 0.5), transparent 65%);
+    top: -140px;
+    left: -110px;
+    opacity: 0.3;
+  }
+
+  .orb-2 {
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(130, 0, 255, 0.45), transparent 65%);
+    bottom: -90px;
+    right: -70px;
+    opacity: 0.25;
+  }
+
+  .orb-3 {
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(255, 110, 180, 0.4), transparent 65%);
+    top: 40%;
+    left: 50%;
+    opacity: 0.2;
+  }
+
+  @keyframes orbDrift {
+    0%, 100% { transform: translate(0, 0); }
+    40% { transform: translate(25px, -35px); }
+    70% { transform: translate(-15px, 15px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orb { animation: none; }
+  }
+</style>

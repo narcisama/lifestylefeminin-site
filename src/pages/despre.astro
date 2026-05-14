@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_CONFIG } from '../config/site';
+---
+
+<BaseLayout
+  title="Despre Sonia"
+  description="Creator lifestyle din Romania. Articole autentice despre frumusete, moda, motociclism feminin si incredere in sine."
+>
+  <header class="page-header">
+    <h1 class="gradient-text">Despre Sonia</h1>
+  </header>
+
+  <article class="glass-card">
+    <p>{SITE_CONFIG.author.bio}</p>
+
+    <h2>Despre acest blog</h2>
+    <p>
+      Lifestyle Feminin este un spatiu dedicat femeilor moderne din Romania
+      care valorifica increderea, eleganta si autenticitatea.
+    </p>
+
+    <h2>Site-uri partenere</h2>
+    <p>
+      Acest blog face parte dintr-o retea de site-uri ale aceluiasi creator.
+      Toti partenerii sunt declarati transparent pentru conformitate cu
+      politicile Google si Schema.org.
+    </p>
+    <ul>
+      <li>
+        <a href={SITE_CONFIG.partners.sonia11.url} target="_blank" rel="noopener">
+          {SITE_CONFIG.partners.sonia11.url} &mdash; {SITE_CONFIG.partners.sonia11.label}
+        </a>
+      </li>
+    </ul>
+
+    <h2>Politici</h2>
+    <p>
+      Acest site respecta Regulamentul General privind Protectia Datelor
+      (GDPR - UE 2016/679) si politicile Google de transparenta.
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 24px 0 12px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: rgba(240, 230, 255, 0.85);
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li {
+    padding: 8px 0;
+  }
+
+  a {
+    color: #ff6eb4;
+    text-decoration: none;
+    border-bottom: 1px dashed #ff6eb4;
+  }
+</style>

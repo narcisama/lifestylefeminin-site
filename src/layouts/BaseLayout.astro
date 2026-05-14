@@ -1,0 +1,27 @@
+---
+import SEO from '../components/SEO.astro';
+import BackgroundOrbs from '../components/BackgroundOrbs.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+  canonical?: string | undefined;
+  type?: 'website' | 'article' | undefined;
+}
+
+const { title, description, canonical, type } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <SEO title={title} description={description} canonical={canonical} type={type} />
+  </head>
+  <body>
+    <BackgroundOrbs />
+    <main class="container">
+      <slot />
+    </main>
+  </body>
+</html>

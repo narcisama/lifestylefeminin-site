@@ -1,0 +1,103 @@
+---
+import { SITE_CONFIG } from '../config/site';
+
+interface Props {
+  imageUrl?: string | undefined;
+  imageAlt?: string | undefined;
+  href?: string | undefined;
+}
+
+const {
+  imageUrl = SITE_CONFIG.author.image,
+  imageAlt = SITE_CONFIG.author.name,
+  href = SITE_CONFIG.partners.sonia11.url
+} = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener external"
+  class="flip-container"
+  aria-label="Profilul oficial al autoarei"
+>
+  <div class="flipper">
+    <div class="front">
+      <img src={imageUrl} alt={imageAlt} loading="eager" width="220" height="220" />
+    </div>
+    <div class="back">
+      <span class="back-icon">&#10024;</span>
+      <span class="back-text">Profil Oficial</span>
+    </div>
+  </div>
+</a>
+
+<style>
+  .flip-container {
+    perspective: 1000px;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .flipper {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    transform-style: preserve-3d;
+    animation: coinFlip 10s infinite linear;
+  }
+
+  .flip-container:hover .flipper {
+    animation-duration: 15s;
+  }
+
+  .front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 3px solid #ff6eb4;
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.4);
+  }
+
+  .front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #1a0a2e;
+  }
+
+  .back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #ff0080, #8200ff);
+    color: white;
+    font-weight: 800;
+  }
+
+  .back-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .back-text {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @keyframes coinFlip {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flipper { animation: none !important; }
+  }
+</style>

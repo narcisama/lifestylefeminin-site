@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CoinFlip from '../components/CoinFlip.astro';
+import { SITE_CONFIG } from '../config/site';
+---
+
+<BaseLayout>
+  <header class="hero">
+    <h1 class="hero-title">
+      <span class="gradient-text">{SITE_CONFIG.name}</span>
+    </h1>
+    <p class="hero-subtitle">{SITE_CONFIG.shortDescription}</p>
+  </header>
+
+  <section class="author-section glass-card">
+    <CoinFlip />
+    <h2 class="author-title">{SITE_CONFIG.author.name}</h2>
+    <p class="author-bio">{SITE_CONFIG.author.bio}</p>
+  </section>
+
+  <section class="niches glass-card">
+    <h2 class="section-title">Categorii</h2>
+    <div class="niches-grid">
+      {SITE_CONFIG.niches.map((niche) => (
+        <div class="niche-card">
+          <span>{niche.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    color: rgba(240, 230, 255, 0.7);
+  }
+
+  .author-section {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .author-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 15px 0 8px;
+  }
+
+  .author-bio {
+    font-size: 0.85rem;
+    color: rgba(240, 230, 255, 0.75);
+    line-height: 1.5;
+  }
+
+  .niches {
+    margin-top: 20px;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .niches-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .niche-card {
+    background: rgba(255, 0, 128, 0.08);
+    border: 1px solid rgba(255, 0, 128, 0.2);
+    border-radius: 12px;
+    padding: 14px 12px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+  }
+
+  .niche-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 0, 128, 0.15);
+  }
+</style>
