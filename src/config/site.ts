@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   shortDescription: 'Lifestyle premium feminin din România',
   author: {
     name: 'Sonia',
-    bio: 'Creator de conținut lifestyle din România, pasionată de motociclism, beauty, fashion și încredere feminină.',
+    bio: 'Sonia — Creator de conținut lifestyle din România. Pasionată de motociclism, beauty, fashion și încredere feminină. Te invit pe sonia11.com pentru mai mult conținut exclusiv.',
     image: '/images/author.jpg',
     twitter: '',
   },

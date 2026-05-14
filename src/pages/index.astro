@@ -2,6 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CoinFlip from '../components/CoinFlip.astro';
 import { SITE_CONFIG } from '../config/site';
+
+const NICHE_IMAGES: Record<string, string> = {
+  'moto': '/images/blog/moto/main-image.jpg',
+  'grwm': '/images/blog/grwm/grwm-selfie-machiaj-oglinda-1.jpg',
+  'hot-girl-summer': '/images/blog/hot-girl-summer/hot-girl-summer-colanti-pahar-spate-1.jpg',
+  'ootd': '/images/blog/ootd/ootd-mirror-selfie-fullbody-1.jpg',
+  'gym-girl': '/images/blog/gym-girl/gym-girl-sport-outfit-mirror-1.jpg',
+  'lifestyle-premium': '/images/blog/lifestyle-premium/lifestyle-premium-masa-cocktail-1.jpg',
+  'soft-girl-baddie': '/images/blog/soft-girl-baddie/soft-girl-pastel-aesthetic-1.jpg',
+  'glow-up': '/images/blog/glow-up/glow-up-skincare-rutina-1.jpg',
+};
 ---
 
 <BaseLayout>
@@ -18,14 +29,33 @@ import { SITE_CONFIG } from '../config/site';
     <p class="author-bio">{SITE_CONFIG.author.bio}</p>
   </section>
 
-  <section class="niches glass-card">
+  <section class="niches">
     <h2 class="section-title">Categorii</h2>
     <div class="niches-grid">
-      {SITE_CONFIG.niches.map((niche) => (
-        <a href={`/blog/${niche.slug}/`} class="niche-card">
-          <span>{niche.label}</span>
-        </a>
-      ))}
+      {SITE_CONFIG.niches.map((niche) => {
+        const imgSrc = NICHE_IMAGES[niche.slug];
+        return (
+          <a href={`/blog/${niche.slug}/`} class="niche-card">
+            <div class="niche-image">
+              {imgSrc ? (
+                <img
+                  src={imgSrc}
+                  alt={`${niche.label} — Sonia lifestyle`}
+                  width="400"
+                  height="300"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div class="niche-placeholder">
+                  <span class="placeholder-text">{niche.shortLabel}</span>
+                </div>
+              )}
+            </div>
+            <span class="niche-label">{niche.label}</span>
+          </a>
+        );
+      })}
     </div>
   </section>
 </BaseLayout>
@@ -34,27 +64,74 @@ import { SITE_CONFIG } from '../config/site';
   .hero { text-align: center; margin-bottom: 30px; }
   .hero-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
   .hero-subtitle { font-size: 0.9rem; color: rgba(240, 230, 255, 0.7); }
+
   .author-section { text-align: center; margin-bottom: 20px; }
   .author-title { font-size: 1.5rem; font-weight: 700; margin: 15px 0 8px; }
-  .author-bio { font-size: 0.85rem; color: rgba(240, 230, 255, 0.75); line-height: 1.5; }
+  .author-bio { font-size: 0.85rem; color: rgba(240, 230, 255, 0.85); line-height: 1.5; }
+
   .niches { margin-top: 20px; }
   .section-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; text-align: center; }
-  .niches-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .niches-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 480px) {
+    .niches-grid { grid-template-columns: 1fr 1fr; }
+  }
+
   .niche-card {
-    background: rgba(255, 0, 128, 0.08);
-    border: 1px solid rgba(255, 0, 128, 0.2);
-    border-radius: 12px;
-    padding: 14px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 0, 128, 0.15);
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #f0e6ff;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .niche-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 0, 128, 0.4);
+  }
+
+  .niche-image {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #1a0a2e;
+  }
+  .niche-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .niche-card:hover .niche-image img {
+    transform: scale(1.05);
+  }
+
+  .niche-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.15), rgba(130, 0, 255, 0.15));
+  }
+  .placeholder-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .niche-label {
+    padding: 12px;
     text-align: center;
     font-size: 0.85rem;
     font-weight: 600;
-    transition: transform 0.2s ease, background 0.3s ease;
-    color: #f0e6ff;
-    text-decoration: none;
-    display: block;
-  }
-  .niche-card:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 0, 128, 0.15);
+    background: rgba(255, 0, 128, 0.08);
   }
 </style>

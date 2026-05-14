@@ -1,58 +1,217 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_CONFIG } from '../config/site';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${SITE_CONFIG.url}/despre/#sonia`,
+  name: 'Sonia',
+  jobTitle: 'Creator de conținut lifestyle',
+  description: SITE_CONFIG.author.bio,
+  image: `${SITE_CONFIG.url}${SITE_CONFIG.author.image}`,
+  url: `${SITE_CONFIG.url}/despre/`,
+  worksFor: {
+    '@type': 'Organization',
+    name: SITE_CONFIG.name,
+    url: SITE_CONFIG.url,
+  },
+  sameAs: [
+    SITE_CONFIG.partners.sonia11.url,
+    SITE_CONFIG.social.instagram,
+    SITE_CONFIG.social.tiktok,
+  ].filter(Boolean),
+  knowsAbout: [
+    'Motociclism feminin',
+    'Beauty și makeup',
+    'Fashion și styling',
+    'Fitness feminin',
+    'Lifestyle premium',
+    'Skincare și glow up',
+  ],
+  nationality: {
+    '@type': 'Country',
+    name: 'Romania',
+  },
+};
 ---
 
 <BaseLayout
-  title="Despre Sonia"
-  description="Creator lifestyle din România. Articole autentice despre frumusețe, modă, motociclism feminin și încredere în sine."
+  title="Despre Sonia — Creator Lifestyle din România"
+  description="Sonia, creator de conținut lifestyle din România. Pasiune autentică pentru motociclism, beauty, fashion și încredere feminină. Cunoaște povestea în spatele Lifestyle Feminin."
 >
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
   <header class="page-header">
     <h1 class="gradient-text">Despre Sonia</h1>
+    <p class="page-subtitle">Creator de conținut lifestyle din România</p>
   </header>
 
   <article class="glass-card">
-    <p>{SITE_CONFIG.author.bio}</p>
+    <section class="author-intro">
+      <p class="lead">
+        Bună, eu sunt <strong>Sonia</strong> — creator de conținut lifestyle din
+        România, pasionată de motociclism, beauty, fashion și încredere feminină.
+        Pe acest blog împart cu tine experiențele mele autentice și pasiunile care
+        mă definesc.
+      </p>
+    </section>
 
-    <h2>Despre acest blog</h2>
-    <p>
-      Lifestyle Feminin este un spațiu dedicat femeilor moderne din România
-      care valorifică încrederea, eleganța și autenticitatea. Articolele
-      acoperă opt categorii principale: motociclism feminin, rutine de
-      pregătire (GRWM), lifestyle de vară, modă, fitness, eleganță premium,
-      două estetici feminine alternate (soft girl și baddie), și transformări
-      glow up cu skincare.
-    </p>
+    <section class="story">
+      <h2>Povestea mea</h2>
+      <p>
+        Lifestyle Feminin este spațiul meu personal — un loc unde celebrez
+        feminitatea modernă în toată complexitatea ei. De la rutina mea de
+        dimineață la pasiunea pentru motociclism, de la outfit-uri elegante
+        la antrenamente intensive — împărtășesc tot ce trăiesc cu autenticitate.
+      </p>
+      <p>
+        Cred că o femeie poate fi în același timp puternică și delicată,
+        sportivă și feminină, premium și accesibilă. Nu există un singur
+        "tip de femeie" și acest blog reflectă această diversitate.
+      </p>
+    </section>
 
-    <h2>Site-uri partenere</h2>
-    <p>
-      Acest blog face parte dintr-o rețea de site-uri ale aceluiași creator.
-      Toți partenerii sunt declarați transparent pentru conformitate cu
-      politicile Google și standardele Schema.org.
-    </p>
-    <ul>
-      <li>
-        <a href={SITE_CONFIG.partners.sonia11.url} target="_blank" rel="noopener">
-          {SITE_CONFIG.partners.sonia11.url} — {SITE_CONFIG.partners.sonia11.label}
-        </a>
-      </li>
-    </ul>
+    <section class="expertise">
+      <h2>Ce vei găsi pe acest blog</h2>
+      <p>
+        Conținut original organizat în opt categorii care reflectă pasiunile mele:
+      </p>
+      <ul class="expertise-list">
+        <li><strong>Motociclism</strong> — experiența mea pe motor, echipament, rute</li>
+        <li><strong>GRWM</strong> — rutine reale de pregătire pentru diferite ocazii</li>
+        <li><strong>Hot Girl Summer</strong> — lifestyle de vară premium</li>
+        <li><strong>OOTD Fashion</strong> — outfit-uri pentru toate ocaziile</li>
+        <li><strong>Gym Girl</strong> — antrenamente și fitness aesthetic</li>
+        <li><strong>Lifestyle Premium</strong> — rafinament și eleganță</li>
+        <li><strong>Soft Girl & Baddie</strong> — două estetici alternate</li>
+        <li><strong>Glow Up & Skincare</strong> — transformare și îngrijire</li>
+      </ul>
+    </section>
 
-    <h2>Politici și conformitate</h2>
-    <p>
-      Acest site respectă Regulamentul General privind Protecția Datelor
-      (GDPR - UE 2016/679) și politicile Google de transparență privind
-      relațiile între site-uri partenere.
-    </p>
+    <section class="connect">
+      <h2>Conectează-te cu mine</h2>
+      <p>
+        Pentru conținut exclusiv și interacțiune directă, mă găsești pe
+        platformele mele oficiale:
+      </p>
+      <ul class="social-list">
+        <li>
+          <a
+            href={SITE_CONFIG.partners.sonia11.url}
+            target="_blank"
+            rel="noopener"
+          >
+            <strong>sonia11.com</strong> — profilul oficial cu tot conținutul meu
+          </a>
+        </li>
+        <li>
+          <a
+            href={SITE_CONFIG.social.instagram}
+            target="_blank"
+            rel="noopener"
+          >
+            <strong>Instagram</strong> @sonia.g.11
+          </a>
+        </li>
+        <li>
+          <a
+            href={SITE_CONFIG.social.tiktok}
+            target="_blank"
+            rel="noopener"
+          >
+            <strong>TikTok</strong> @sonia11.g
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="transparency">
+      <h2>Transparență și încredere</h2>
+      <p>
+        Acest blog face parte dintr-o rețea de site-uri proprii — toate
+        declarate transparent pentru conformitate cu politicile Google și
+        standardele Schema.org (proprietatea <code>sameAs</code>).
+      </p>
+      <p>
+        Respect Regulamentul General privind Protecția Datelor
+        (GDPR — UE 2016/679) și ofer informații complete despre cum
+        sunt gestionate datele pe site.
+      </p>
+      <p class="updated">
+        <em>Ultima actualizare: 14 mai 2026</em>
+      </p>
+    </section>
   </article>
 </BaseLayout>
 
 <style>
   .page-header { text-align: center; margin-bottom: 30px; }
-  h1 { font-size: 1.8rem; font-weight: 800; }
-  h2 { font-size: 1.1rem; font-weight: 700; margin: 24px 0 12px; }
-  p { font-size: 0.9rem; color: rgba(240, 230, 255, 0.85); margin-bottom: 12px; line-height: 1.6; }
-  ul { list-style: none; padding-left: 0; }
-  li { padding: 8px 0; }
-  a { color: #ff6eb4; text-decoration: none; border-bottom: 1px dashed #ff6eb4; }
+  h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; }
+  .page-subtitle { font-size: 0.95rem; color: rgba(240, 230, 255, 0.7); }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 28px 0 12px;
+    color: #fff;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: rgba(240, 230, 255, 0.85);
+    margin-bottom: 14px;
+    line-height: 1.7;
+  }
+
+  .lead {
+    font-size: 1rem;
+    color: rgba(240, 230, 255, 0.95);
+    line-height: 1.7;
+  }
+
+  .lead strong, p strong {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .expertise-list, .social-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 12px 0 20px;
+  }
+  .expertise-list li, .social-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 0, 128, 0.1);
+    font-size: 0.9rem;
+    color: rgba(240, 230, 255, 0.85);
+    line-height: 1.5;
+  }
+  .expertise-list li:last-child, .social-list li:last-child {
+    border-bottom: none;
+  }
+
+  .social-list a {
+    color: #ff6eb4;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(255, 110, 180, 0.4);
+  }
+  .social-list a:hover {
+    border-bottom-color: #ff6eb4;
+  }
+
+  code {
+    background: rgba(255, 0, 128, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #ff6eb4;
+  }
+
+  .updated {
+    font-size: 0.8rem;
+    color: rgba(240, 230, 255, 0.5);
+    margin-top: 20px;
+    text-align: center;
+  }
 </style>
