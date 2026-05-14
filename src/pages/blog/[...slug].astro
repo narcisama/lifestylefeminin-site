@@ -64,6 +64,50 @@ const breadcrumbSchema = {
     },
   ],
 };
+
+const FAQ_SECTION_HEADING = '## Întrebări frecvente';
+const articleBody = post.body;
+const faqSectionStart = articleBody.indexOf(FAQ_SECTION_HEADING);
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+let faqItems: FaqItem[] = [];
+
+if (faqSectionStart !== -1) {
+  const afterHeading = faqSectionStart + FAQ_SECTION_HEADING.length;
+  const nextH2Idx = articleBody.indexOf('\n## ', afterHeading);
+  const faqSectionEnd = nextH2Idx === -1 ? articleBody.length : nextH2Idx;
+  const faqSection = articleBody.slice(afterHeading, faqSectionEnd);
+
+  const faqRegex = /###\s+(.+?)\n+([\s\S]+?)(?=\n###\s+|$)/g;
+  for (const match of faqSection.matchAll(faqRegex)) {
+    const question = match[1]?.trim();
+    const answerRaw = match[2]?.trim();
+    if (!question || !answerRaw) continue;
+    const firstParagraph = answerRaw.split(/\n\s*\n/)[0]?.trim();
+    if (firstParagraph) {
+      faqItems.push({ question, answer: firstParagraph });
+    }
+  }
+}
+
+const faqSchema = faqItems.length > 0
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    }
+  : null;
 ---
 
 <BaseLayout
@@ -74,6 +118,9 @@ const breadcrumbSchema = {
 >
   <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  {faqSchema && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  )}
 
   <article class="blog-article">
     <header class="article-header glass-card">
@@ -134,12 +181,80 @@ const breadcrumbSchema = {
   .article-hero { padding: 0; overflow: hidden; aspect-ratio: 16/9; }
   .article-hero img { width: 100%; height: 100%; object-fit: cover; }
   .article-content { font-size: 0.95rem; line-height: 1.7; color: rgba(240, 230, 255, 0.9); }
-  .article-content :global(h2) { font-size: 1.3rem; font-weight: 700; margin: 24px 0 12px; color: #fff; }
-  .article-content :global(h3) { font-size: 1.1rem; font-weight: 700; margin: 20px 0 10px; color: #fff; }
+  .article-content :global(h2) {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 32px 0 14px;
+    color: #fff;
+  }
+  .article-content :global(h2:first-child) { margin-top: 0; }
+  .article-content :global(h3) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 24px 0 10px;
+    color: #ff6eb4;
+  }
   .article-content :global(p) { margin-bottom: 16px; }
   .article-content :global(a) { color: #ff6eb4; }
   .article-content :global(strong) { color: #fff; font-weight: 700; }
   .article-content :global(img) { width: 100%; height: auto; border-radius: 12px; margin: 16px 0; }
+
+  .article-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+    overflow-x: auto;
+  }
+  .article-content :global(thead) {
+    background: rgba(255, 0, 128, 0.15);
+  }
+  .article-content :global(th) {
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: 700;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 0, 128, 0.3);
+    white-space: nowrap;
+  }
+  .article-content :global(td) {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(240, 230, 255, 0.85);
+    vertical-align: top;
+  }
+  .article-content :global(tr:last-child td) { border-bottom: none; }
+  .article-content :global(tr:hover) { background: rgba(255, 0, 128, 0.05); }
+
+  .article-content :global(ul), .article-content :global(ol) {
+    padding-left: 20px;
+    margin: 14px 0;
+  }
+  .article-content :global(li) {
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+
+  .article-content :global(blockquote) {
+    border-left: 3px solid #ff6eb4;
+    padding-left: 16px;
+    margin: 20px 0;
+    font-style: italic;
+    color: rgba(240, 230, 255, 0.9);
+  }
+
+  .article-content :global(code) {
+    background: rgba(255, 0, 128, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #ff6eb4;
+  }
+
   .article-tags h3 { font-size: 0.9rem; margin-bottom: 12px; }
   .tags-list { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag {
