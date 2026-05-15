@@ -32,6 +32,11 @@ Aici găsești experiența mea reală: de la primele lecții pe motor și aleger
         alt: 'Sonia motociclistă România',
         caption: 'Pasiunea pentru moto',
       },
+      {
+        src: '/images/author.jpg',
+        alt: 'Sonia portrait',
+        caption: 'Lifestyle creator',
+      },
     ],
     heroImage: {
       src: '/images/blog/moto/main-image.jpg',

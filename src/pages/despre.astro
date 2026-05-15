@@ -34,6 +34,25 @@ const personSchema = {
     name: 'Romania',
   },
 };
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Acasă',
+      item: SITE_CONFIG.url,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Despre Sonia',
+      item: `${SITE_CONFIG.url}/despre/`,
+    },
+  ],
+};
 ---
 
 <BaseLayout
@@ -41,6 +60,7 @@ const personSchema = {
   description="Sonia, creator de conținut lifestyle din România. Pasiune autentică pentru motociclism, beauty, fashion și încredere feminină. Cunoaște povestea în spatele Lifestyle Feminin."
 >
   <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
   <header class="page-header">
     <h1 class="gradient-text">Despre Sonia</h1>
